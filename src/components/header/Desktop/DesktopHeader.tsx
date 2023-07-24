@@ -1,23 +1,17 @@
 import './DesktopHeader.scss';
+import navigation from '../../../data/navigation.json';
+import { Link } from 'react-router-dom';
 
 function DesktopHeader() {
     return (
         <nav className='main-nav'>
-            TODO - navigation data
+            {
+                navigation.map((data, index) => (
+                    <Link key={index} to={data.path}>{data.label}</Link>
+                ))
+            }
         </nav>
     );
 }
-
-/*
-Navigation data jsx example
-
-{ navigationData.map((data, index) => (
-    <Link key={ index } to={ data.path }
-        onClick={ data.download ? openResume : undefined }>
-            { data.label }
-    </Link>
-    )
-)}
-*/
 
 export default DesktopHeader;

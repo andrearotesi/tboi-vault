@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './MobileHeader.scss';
 import { Close, Menu } from '@mui/icons-material';
+import navigation from '../../../data/navigation.json';
+import { Link } from 'react-router-dom';
 
 function MobileHeader() {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +20,13 @@ function MobileHeader() {
                         <Close onClick={toggleMenu} className='toggle'/>
                         <section className='center'>
                             <div className='menu-items'>
-                                TODO - navigation data
+                                {
+                                    navigation.map((data, index) => (
+                                        <p key={index} onClick={toggleMenu}>
+                                            <Link to={data.path}>{data.label}</Link>
+                                        </p>
+                                    ))
+                                }
                             </div>
                         </section>
                     </div>
@@ -27,18 +35,5 @@ function MobileHeader() {
         </div>
     );
 }
-
-/*
-Navigation data jsx portion
-
-{navigationData.map((data, index) => (
-    <p key={index} onClick={toggleMenu}>
-        <Link to={data.path}
-        onClick={data.download ? openResume : undefined}>
-        {data.label}
-        </Link>
-    </p>
-))}
-*/
 
 export default MobileHeader;
